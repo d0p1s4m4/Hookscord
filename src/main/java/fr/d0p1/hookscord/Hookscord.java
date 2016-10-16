@@ -45,7 +45,7 @@ public class Hookscord {
             
             connection.setRequestMethod(method.toString());
             connection.setRequestProperty("User-Agent", USER_AGENT);
-            connection.setRequestProperty("Content-type", "application/json");
+            connection.setRequestProperty("Content-type", "application/json; charset=windows-1252");
             connection.setDoOutput(true);
             connection.setDoInput(true);
         } catch (IOException ex) {
