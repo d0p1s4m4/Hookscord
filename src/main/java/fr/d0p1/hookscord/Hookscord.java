@@ -34,10 +34,20 @@ public class Hookscord {
     
     private URL _url = null;
     
+    /**
+     * 
+     * @param url discord webhook url
+     * @throws MalformedURLException 
+     */
     public Hookscord(String url) throws MalformedURLException {
         this._url = new URL(url + "/slack");
     }
     
+    /**
+     * Open connection to webhook endpoint
+     * @param method (eg: EHttpMethod.POST)
+     * @return 
+     */
     private HttpURLConnection _doConnection(EHttpMethod method) {
         HttpURLConnection connection = null;
         try {
@@ -55,6 +65,11 @@ public class Hookscord {
         return (connection);
     }
     
+    /**
+     * 
+     * @param payload String to send to webserver
+     * @return true if success false otherwise
+     */
     private boolean _doPost(String payload) {
         HttpURLConnection connection = this._doConnection(EHttpMethod.POST);
         if (connection == null) {
@@ -82,6 +97,11 @@ public class Hookscord {
         return (true);
     }
     
+    /**
+     * Send a message to a channel
+     * @param msg an instance of Message
+     * @throws IOException 
+     */
     public void sendMessage(Message msg) throws IOException {
         if (!this._doPost(msg.toJson().toString())) {
             throw new IOException("Can't perform task");
